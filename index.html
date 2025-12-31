@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>守护绿色家园 | 共创美好未来</title>
+    <style>
+        /* --- 全局样式变量 --- */
+        :root {
+            --primary-color: #27ae60; /* 森林绿 */
+            --secondary-color: #2ecc71; /* 浅绿 */
+            --accent-color: #f1c40f; /* 强调色 */
+            --text-dark: #333;
+            --text-light: #666;
+            --bg-light: #f9f9f9;
+            --white: #ffffff;
+        }
+
+        /* --- 基础重置 --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Microsoft YaHei", "Helvetica Neue", Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background-color: var(--white);
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        /* --- 导航栏 --- */
+        header {
+            background-color: var(--white);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+
+        .btn-cta {
+            background-color: var(--primary-color);
+            color: var(--white);
+            padding: 0.5rem 1.2rem;
+            border-radius: 25px;
+            transition: background 0.3s;
+        }
+
+        .btn-cta:hover {
+            background-color: #1e8449;
+            color: var(--white);
+        }
+
+        /* --- 首页 Hero 区域 --- */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1501854140884-074bf6b243c7?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: var(--white);
+            padding: 0 1rem;
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero-btn {
+            background-color: var(--secondary-color);
+            color: var(--white);
+            padding: 1rem 2rem;
+            font-size: 1.1rem;
+            border-radius: 50px;
+            font-weight: bold;
+            transition: transform 0.3s, background 0.3s;
+            display: inline-block;
+        }
+
+        .hero-btn:hover {
+            background-color: var(--primary-color);
+            transform: translateY(-3px);
+        }
+
+        /* --- 通用部分样式 --- */
+        section {
+            padding: 5rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 3rem;
+            color: var(--primary-color);
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 3px;
+            background-color: var(--accent-color);
+            margin: 10px auto 0;
+        }
+
+        /* --- 理念介绍 (Grid布局) --- */
+        .about-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .about-text h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .about-text p {
+            color: var(--text-light);
+            margin-bottom: 1.5rem;
+        }
+
+        .about-image img {
+            width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+
+        /* --- 行动卡片 --- */
+        .actions {
+            background-color: var(--bg-light);
+        }
+
+        .card-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .card {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+        }
+
+        .card-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .card h4 {
+            margin-bottom: 0.5rem;
+            font-size: 1.2rem;
+        }
+
+        .card p {
+            font-size: 0.9rem;
+            color: var(--text-light);
+        }
+
+        /* --- 呼吁部分 --- */
+        .quote-section {
+            background-color: var(--primary-color);
+            color: var(--white);
+            text-align: center;
+            padding: 4rem 2rem;
+        }
+
+        .quote-section h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        /* --- 页脚 --- */
+        footer {
+            background-color: #222;
+            color: #ddd;
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .social-links {
+            margin: 1.5rem 0;
+        }
+
+        .social-links a {
+            margin: 0 10px;
+            font-size: 1.2rem;
+            opacity: 0.7;
+            transition: opacity 0.3s;
+        }
+
+        .social-links a:hover {
+            opacity: 1;
+        }
+
+        /* --- 响应式适配 --- */
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .nav-links {
+                gap: 1rem;
+                font-size: 0.9rem;
+            }
+
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <nav class="navbar">
+            <div class="logo">🌿 GreenLife</div>
+            <ul class="nav-links">
+                <li><a href="#home">首页</a></li>
+                <li><a href="#about">为什么重要</a></li>
+                <li><a href="#actions">如何行动</a></li>
+            </ul>
+            <a href="#join" class="btn-cta">加入我们</a>
+        </nav>
+    </header>
+
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>守护绿色家园，共创美好未来</h1>
+            <p>地球是我们唯一的家园。从今天开始，通过微小的改变，为下一代留下一片蔚蓝。</p>
+            <a href="#actions" class="hero-btn">开始行动</a>
+        </div>
+    </section>
+
+    <section id="about">
+        <h2 class="section-title">由于我们，地球正在改变</h2>
+        <div class="about-grid">
+            <div class="about-image">
+                <img src="https://images.unsplash.com/photo-1466611653911-95081537e5b7?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="美丽的自然风光">
+            </div>
+            <div class="about-text">
+                <h3>自然的呼唤</h3>
+                <p>气候变暖、冰川融化、生物多样性丧失……这些不是遥远的新闻，而是正在发生的现实。保护环境不再是一个选项，而是生存的必须。</p>
+                <p>每一片森林的消失，都意味着地球之肺功能的减弱。我们要做的不仅是停止破坏，更是要主动修复。</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="actions" class="actions">
+        <h2 class="section-title">我们可以做些什么？</h2>
+        <div class="card-container">
+            <div class="card">
+                <span class="card-icon">🚲</span>
+                <h4>绿色出行</h4>
+                <p>短距离选择步行或骑行，长距离优先选择公共交通，减少碳排放，锻炼身体。</p>
+            </div>
+            <div class="card">
+                <span class="card-icon">♻️</span>
+                <h4>垃圾分类</h4>
+                <p>认真做好垃圾分类，让资源循环利用。减少使用一次性塑料制品，携带环保袋。</p>
+            </div>
+            <div class="card">
+                <span class="card-icon">💡</span>
+                <h4>节约能源</h4>
+                <p>随手关灯，使用节能电器。调高空调一度电，就能为地球减轻一份负担。</p>
+            </div>
+            <div class="card">
+                <span class="card-icon">🌳</span>
+                <h4>植树护绿</h4>
+                <p>参与植树造林活动，或者在家中种植绿植，为城市增添一抹绿色。</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="join" class="quote-section">
+        <h2>"我们不需要少数人完美地做环保，<br>我们需要数十亿人不完美地做环保。"</h2>
+        <p style="margin-top: 1rem; opacity: 0.9;">—— 加入环保志愿者的行列</p>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <h3>GreenLife 环保公益</h3>
+            <p>让我们携手，让地球重现生机。</p>
+            <div class="social-links">
+                <a href="#">微博</a>
+                <a href="#">微信</a>
+                <a href="#">抖音</a>
+            </div>
+            <p style="font-size: 0.8rem; margin-top: 2rem;">&copy; 2023 守护绿色家园. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
